@@ -1,6 +1,5 @@
-// Get elements
 const player = document.querySelector('.player');
-const video = player.querySelector('.viewer');
+const video = player.querySelector('.player__video');
 const toggle = player.querySelector('.toggle');
 const skipButtons = player.querySelectorAll('[data-skip]');
 const volumeSlider = player.querySelector('.volume');
@@ -17,23 +16,23 @@ function togglePlay() {
   }
 }
 
-// Update play/pause button icon
+// Update play/pause button
 function updateButton() {
   const icon = video.paused ? '►' : '❚ ❚';
   toggle.textContent = icon;
 }
 
-// Skip forward or backward
+// Skip forward/backward
 function skip() {
   video.currentTime += parseFloat(this.dataset.skip);
 }
 
-// Handle volume change
+// Adjust volume
 function handleVolume() {
   video.volume = this.value;
 }
 
-// Handle playback speed change
+// Adjust playback speed
 function handleSpeed() {
   video.playbackRate = this.value;
 }
@@ -44,7 +43,7 @@ function handleProgress() {
   progressFilled.style.width = `${percent}%`;
 }
 
-// Scrub (seek) on progress bar click
+// Scrub (seek)
 function scrub(e) {
   const scrubTime = (e.offsetX / progress.offsetWidth) * video.duration;
   video.currentTime = scrubTime;
@@ -66,4 +65,5 @@ progress.addEventListener('click', scrub);
 progress.addEventListener('mousemove', e => mousedown && scrub(e));
 progress.addEventListener('mousedown', () => (mousedown = true));
 progress.addEventListener('mouseup', () => (mousedown = false));
+
 
